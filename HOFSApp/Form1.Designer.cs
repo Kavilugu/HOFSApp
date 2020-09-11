@@ -40,11 +40,14 @@
             this.countryComboBox = new System.Windows.Forms.ComboBox();
             this.searchListBox = new System.Windows.Forms.ListBox();
             this.modifyTab = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.estateTypeModifyComboBox = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.estateCategoryModifyComboBox = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.imageModifyButton = new System.Windows.Forms.Button();
             this.modifyPictureBox = new System.Windows.Forms.PictureBox();
             this.confirmModifyButton = new System.Windows.Forms.Button();
-            this.legalFormModifyTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.estateRentModifyTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -65,8 +68,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.IDModifyTextBox = new System.Windows.Forms.TextBox();
-            this.estateTypeModifyComboBox = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.modifyLegalFormComboBox = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.searchTab.SuspendLayout();
             this.modifyTab.SuspendLayout();
@@ -193,13 +195,15 @@
             // modifyTab
             // 
             this.modifyTab.BackColor = System.Drawing.Color.Silver;
-            this.modifyTab.Controls.Add(this.label12);
+            this.modifyTab.Controls.Add(this.modifyLegalFormComboBox);
+            this.modifyTab.Controls.Add(this.label13);
             this.modifyTab.Controls.Add(this.estateTypeModifyComboBox);
+            this.modifyTab.Controls.Add(this.label12);
+            this.modifyTab.Controls.Add(this.estateCategoryModifyComboBox);
             this.modifyTab.Controls.Add(this.label11);
             this.modifyTab.Controls.Add(this.imageModifyButton);
             this.modifyTab.Controls.Add(this.modifyPictureBox);
             this.modifyTab.Controls.Add(this.confirmModifyButton);
-            this.modifyTab.Controls.Add(this.legalFormModifyTextBox);
             this.modifyTab.Controls.Add(this.label10);
             this.modifyTab.Controls.Add(this.estateRentModifyTextBox);
             this.modifyTab.Controls.Add(this.label9);
@@ -224,6 +228,48 @@
             this.modifyTab.Size = new System.Drawing.Size(801, 429);
             this.modifyTab.TabIndex = 1;
             this.modifyTab.Text = "Modify";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(76, 197);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 15);
+            this.label13.TabIndex = 29;
+            this.label13.Text = "Estate Type";
+            // 
+            // estateTypeModifyComboBox
+            // 
+            this.estateTypeModifyComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.estateTypeModifyComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.estateTypeModifyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.estateTypeModifyComboBox.FormattingEnabled = true;
+            this.estateTypeModifyComboBox.Location = new System.Drawing.Point(39, 215);
+            this.estateTypeModifyComboBox.Name = "estateTypeModifyComboBox";
+            this.estateTypeModifyComboBox.Size = new System.Drawing.Size(121, 23);
+            this.estateTypeModifyComboBox.Sorted = true;
+            this.estateTypeModifyComboBox.TabIndex = 28;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(41, 68);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(95, 15);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Category to add:";
+            // 
+            // estateCategoryModifyComboBox
+            // 
+            this.estateCategoryModifyComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.estateCategoryModifyComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.estateCategoryModifyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.estateCategoryModifyComboBox.FormattingEnabled = true;
+            this.estateCategoryModifyComboBox.Location = new System.Drawing.Point(37, 86);
+            this.estateCategoryModifyComboBox.Name = "estateCategoryModifyComboBox";
+            this.estateCategoryModifyComboBox.Size = new System.Drawing.Size(100, 23);
+            this.estateCategoryModifyComboBox.Sorted = true;
+            this.estateCategoryModifyComboBox.TabIndex = 26;
             // 
             // label11
             // 
@@ -253,7 +299,7 @@
             // 
             // confirmModifyButton
             // 
-            this.confirmModifyButton.Location = new System.Drawing.Point(262, 260);
+            this.confirmModifyButton.Location = new System.Drawing.Point(328, 391);
             this.confirmModifyButton.Name = "confirmModifyButton";
             this.confirmModifyButton.Size = new System.Drawing.Size(75, 23);
             this.confirmModifyButton.TabIndex = 22;
@@ -261,17 +307,10 @@
             this.confirmModifyButton.UseVisualStyleBackColor = true;
             this.confirmModifyButton.Click += new System.EventHandler(this.confirmModifyButton_Click);
             // 
-            // legalFormModifyTextBox
-            // 
-            this.legalFormModifyTextBox.Location = new System.Drawing.Point(442, 215);
-            this.legalFormModifyTextBox.Name = "legalFormModifyTextBox";
-            this.legalFormModifyTextBox.Size = new System.Drawing.Size(100, 23);
-            this.legalFormModifyTextBox.TabIndex = 21;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(456, 197);
+            this.label10.Location = new System.Drawing.Point(67, 260);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 15);
             this.label10.TabIndex = 20;
@@ -311,7 +350,7 @@
             // 
             // estatePriceTextBox
             // 
-            this.estatePriceTextBox.Location = new System.Drawing.Point(51, 215);
+            this.estatePriceTextBox.Location = new System.Drawing.Point(442, 215);
             this.estatePriceTextBox.Name = "estatePriceTextBox";
             this.estatePriceTextBox.Size = new System.Drawing.Size(100, 23);
             this.estatePriceTextBox.TabIndex = 15;
@@ -319,7 +358,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(67, 197);
+            this.label7.Location = new System.Drawing.Point(456, 197);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 15);
             this.label7.TabIndex = 14;
@@ -400,6 +439,7 @@
             // 
             this.modifyCountryComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.modifyCountryComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.modifyCountryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.modifyCountryComboBox.FormattingEnabled = true;
             this.modifyCountryComboBox.Location = new System.Drawing.Point(39, 144);
             this.modifyCountryComboBox.Name = "modifyCountryComboBox";
@@ -441,22 +481,17 @@
             this.IDModifyTextBox.Size = new System.Drawing.Size(100, 23);
             this.IDModifyTextBox.TabIndex = 0;
             // 
-            // estateTypeModifyComboBox
+            // modifyLegalFormComboBox
             // 
-            this.estateTypeModifyComboBox.FormattingEnabled = true;
-            this.estateTypeModifyComboBox.Location = new System.Drawing.Point(37, 86);
-            this.estateTypeModifyComboBox.Name = "estateTypeModifyComboBox";
-            this.estateTypeModifyComboBox.Size = new System.Drawing.Size(100, 23);
-            this.estateTypeModifyComboBox.TabIndex = 26;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(51, 68);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(71, 15);
-            this.label12.TabIndex = 27;
-            this.label12.Text = "Type to add:";
+            this.modifyLegalFormComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.modifyLegalFormComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.modifyLegalFormComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.modifyLegalFormComboBox.FormattingEnabled = true;
+            this.modifyLegalFormComboBox.Location = new System.Drawing.Point(39, 274);
+            this.modifyLegalFormComboBox.Name = "modifyLegalFormComboBox";
+            this.modifyLegalFormComboBox.Size = new System.Drawing.Size(121, 23);
+            this.modifyLegalFormComboBox.Sorted = true;
+            this.modifyLegalFormComboBox.TabIndex = 30;
             // 
             // Form1
             // 
@@ -508,7 +543,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox estatePriceTextBox;
         private System.Windows.Forms.Button confirmModifyButton;
-        private System.Windows.Forms.TextBox legalFormModifyTextBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox estateRentModifyTextBox;
         private System.Windows.Forms.Label label9;
@@ -518,7 +552,10 @@
         private System.Windows.Forms.Button imageModifyButton;
         private System.Windows.Forms.PictureBox modifyPictureBox;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox estateCategoryModifyComboBox;
         private System.Windows.Forms.ComboBox estateTypeModifyComboBox;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox modifyLegalFormComboBox;
     }
 }
 

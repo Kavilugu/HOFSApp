@@ -84,7 +84,18 @@ namespace HOFSApp
             return CopyList(estateList);
         }
 
-        public Boolean addEstate(Address address, EstateType estateType)
+        public bool AddResidentialEstate(Address address, EstateType estateType, EstateLegalForm estateLegalForm, int estatePrice, double estateDimensions, int estateRent)
+        {
+            Estate estate;
+           
+                return false;
+        }
+
+        public bool AddCommercialEstate(Address address, EstateType estateType, EstateLegalForm estateLegalForm, int estatePrice, double estateDimensions, int estateRent)
+        {
+
+            return false;
+        }
 
         private List<Estate> CopyList(List<Estate> target)
         {

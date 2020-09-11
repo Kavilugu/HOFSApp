@@ -26,30 +26,45 @@ namespace HOFSApp
                     modifyCountryComboBox.Items.Add(countries.GetValue(i));
                 }
             }
-
             var estateTypes = Enum.GetValues(typeof(EstateType));
             for (int i = 0; i < estateTypes.Length; i++)
             {
                 estateTypeComboBox.Items.Add(estateTypes.GetValue(i));
-                
+                if ((EstateType)estateTypes.GetValue(i) != EstateType.All)
+                {
+                    estateTypeModifyComboBox.Items.Add(estateTypes.GetValue(i));
+                }
+            }
+            var estateCategories = Enum.GetValues(typeof(EstateCategory));
+            for (int i = 0; i < estateCategories.Length; i++)
+            {
+                estateCategoryModifyComboBox.Items.Add(estateCategories.GetValue(i));
+            }
+            var estateLegalForm = Enum.GetValues(typeof(EstateLegalForm));
+            for (int i = 0; i < estateLegalForm.Length; i++)
+            {
+                modifyLegalFormComboBox.Items.Add(estateLegalForm.GetValue(i));
             }
             countryComboBox.SelectedItem = Countries.All;
             estateTypeComboBox.SelectedItem = EstateType.All;
             addRadioButton.CheckedChanged += new EventHandler(radioButton_CheckedChanged);
-  
-
+            modifyCountryComboBox.SelectedIndex = 0;
+            estateCategoryModifyComboBox.SelectedIndex = 0;
+            estateTypeComboBox.SelectedIndex = 0;
+            modifyLegalFormComboBox.SelectedIndex = 0;
+            addRadioButton.Checked = true;
         }
 
-    private void searchButton_Click(object sender, EventArgs e)
-    {
-        refreshListBox(controller.SearchEstate((Countries)countryComboBox.SelectedItem, cityTextBox.Text, (EstateType)estateTypeComboBox.SelectedItem));
-    }
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            refreshListBox(controller.SearchEstate((Countries)countryComboBox.SelectedItem, cityTextBox.Text, (EstateType)estateTypeComboBox.SelectedItem));
+        }
 
-    private void refreshListBox(List<Estate> estateList)
-    {
-        searchListBox.DataSource = estateList;
-        searchListBox.DisplayMember = "GetSummary";
-    }
+        private void refreshListBox(List<Estate> estateList)
+        {
+            searchListBox.DataSource = estateList;
+            searchListBox.DisplayMember = "GetSummary";
+        }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
@@ -66,13 +81,15 @@ namespace HOFSApp
 
         private void confirmModifyButton_Click(object sender, EventArgs e)
         {
+           // cityModifyTextBox.
+            //if()
 
         }
 
         private void radioButton_CheckedChanged(Object sender, EventArgs e)
         {
             IDModifyTextBox.Enabled = modifyRadioButton.Checked;
-            estateTypeComboBox.Enabled = addRadioButton.Checked;
+            estateCategoryModifyComboBox.Enabled = addRadioButton.Checked;
         }
     }
 }
