@@ -40,6 +40,14 @@
             this.countryComboBox = new System.Windows.Forms.ComboBox();
             this.searchListBox = new System.Windows.Forms.ListBox();
             this.modifyTab = new System.Windows.Forms.TabPage();
+            this.confirmModifyButton = new System.Windows.Forms.Button();
+            this.legalFormModifyTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.estateRentModifyTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dimensionsModifyTextBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.estatePriceTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.zipCodeModifyTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -54,18 +62,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.IDModifyTextBox = new System.Windows.Forms.TextBox();
-            this.estatePriceTextBox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dimensionsModifyTextBox = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.estateRentModifyTextBox = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.legalFormModifyTextBox = new System.Windows.Forms.TextBox();
-            this.confirmModifyButton = new System.Windows.Forms.Button();
+            this.modifyPictureBox = new System.Windows.Forms.PictureBox();
+            this.imageModifyButton = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.searchTab.SuspendLayout();
             this.modifyTab.SuspendLayout();
             this.radioGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modifyPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -187,6 +191,9 @@
             // modifyTab
             // 
             this.modifyTab.BackColor = System.Drawing.Color.Silver;
+            this.modifyTab.Controls.Add(this.label11);
+            this.modifyTab.Controls.Add(this.imageModifyButton);
+            this.modifyTab.Controls.Add(this.modifyPictureBox);
             this.modifyTab.Controls.Add(this.confirmModifyButton);
             this.modifyTab.Controls.Add(this.legalFormModifyTextBox);
             this.modifyTab.Controls.Add(this.label10);
@@ -213,6 +220,70 @@
             this.modifyTab.Size = new System.Drawing.Size(801, 429);
             this.modifyTab.TabIndex = 1;
             this.modifyTab.Text = "Modify";
+            // 
+            // confirmModifyButton
+            // 
+            this.confirmModifyButton.Location = new System.Drawing.Point(262, 260);
+            this.confirmModifyButton.Name = "confirmModifyButton";
+            this.confirmModifyButton.Size = new System.Drawing.Size(75, 23);
+            this.confirmModifyButton.TabIndex = 22;
+            this.confirmModifyButton.Text = "Confirm";
+            this.confirmModifyButton.UseVisualStyleBackColor = true;
+            // 
+            // legalFormModifyTextBox
+            // 
+            this.legalFormModifyTextBox.Location = new System.Drawing.Point(442, 215);
+            this.legalFormModifyTextBox.Name = "legalFormModifyTextBox";
+            this.legalFormModifyTextBox.Size = new System.Drawing.Size(100, 23);
+            this.legalFormModifyTextBox.TabIndex = 21;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(456, 197);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(69, 15);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Legal Form:";
+            // 
+            // estateRentModifyTextBox
+            // 
+            this.estateRentModifyTextBox.Location = new System.Drawing.Point(312, 215);
+            this.estateRentModifyTextBox.Name = "estateRentModifyTextBox";
+            this.estateRentModifyTextBox.Size = new System.Drawing.Size(100, 23);
+            this.estateRentModifyTextBox.TabIndex = 19;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(328, 197);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(68, 15);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Estate Rent:";
+            // 
+            // dimensionsModifyTextBox
+            // 
+            this.dimensionsModifyTextBox.Location = new System.Drawing.Point(187, 215);
+            this.dimensionsModifyTextBox.Name = "dimensionsModifyTextBox";
+            this.dimensionsModifyTextBox.Size = new System.Drawing.Size(100, 23);
+            this.dimensionsModifyTextBox.TabIndex = 17;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(187, 197);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(106, 15);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Estate Dimensions:";
+            // 
+            // estatePriceTextBox
+            // 
+            this.estatePriceTextBox.Location = new System.Drawing.Point(51, 215);
+            this.estatePriceTextBox.Name = "estatePriceTextBox";
+            this.estatePriceTextBox.Size = new System.Drawing.Size(100, 23);
+            this.estatePriceTextBox.TabIndex = 15;
             // 
             // label7
             // 
@@ -339,69 +410,31 @@
             this.IDModifyTextBox.Size = new System.Drawing.Size(100, 23);
             this.IDModifyTextBox.TabIndex = 0;
             // 
-            // estatePriceTextBox
+            // modifyPictureBox
             // 
-            this.estatePriceTextBox.Location = new System.Drawing.Point(51, 215);
-            this.estatePriceTextBox.Name = "estatePriceTextBox";
-            this.estatePriceTextBox.Size = new System.Drawing.Size(100, 23);
-            this.estatePriceTextBox.TabIndex = 15;
+            this.modifyPictureBox.Location = new System.Drawing.Point(598, 126);
+            this.modifyPictureBox.Name = "modifyPictureBox";
+            this.modifyPictureBox.Size = new System.Drawing.Size(141, 112);
+            this.modifyPictureBox.TabIndex = 23;
+            this.modifyPictureBox.TabStop = false;
             // 
-            // label8
+            // imageModifyButton
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(187, 197);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(106, 15);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Estate Dimensions:";
+            this.imageModifyButton.Location = new System.Drawing.Point(631, 260);
+            this.imageModifyButton.Name = "imageModifyButton";
+            this.imageModifyButton.Size = new System.Drawing.Size(75, 23);
+            this.imageModifyButton.TabIndex = 24;
+            this.imageModifyButton.Text = "Upload";
+            this.imageModifyButton.UseVisualStyleBackColor = true;
             // 
-            // dimensionsModifyTextBox
+            // label11
             // 
-            this.dimensionsModifyTextBox.Location = new System.Drawing.Point(187, 215);
-            this.dimensionsModifyTextBox.Name = "dimensionsModifyTextBox";
-            this.dimensionsModifyTextBox.Size = new System.Drawing.Size(100, 23);
-            this.dimensionsModifyTextBox.TabIndex = 17;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(328, 197);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(68, 15);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Estate Rent:";
-            // 
-            // estateRentModifyTextBox
-            // 
-            this.estateRentModifyTextBox.Location = new System.Drawing.Point(312, 215);
-            this.estateRentModifyTextBox.Name = "estateRentModifyTextBox";
-            this.estateRentModifyTextBox.Size = new System.Drawing.Size(100, 23);
-            this.estateRentModifyTextBox.TabIndex = 19;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(456, 197);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 15);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Legal Form:";
-            // 
-            // legalFormModifyTextBox
-            // 
-            this.legalFormModifyTextBox.Location = new System.Drawing.Point(442, 215);
-            this.legalFormModifyTextBox.Name = "legalFormModifyTextBox";
-            this.legalFormModifyTextBox.Size = new System.Drawing.Size(100, 23);
-            this.legalFormModifyTextBox.TabIndex = 21;
-            // 
-            // confirmModifyButton
-            // 
-            this.confirmModifyButton.Location = new System.Drawing.Point(262, 260);
-            this.confirmModifyButton.Name = "confirmModifyButton";
-            this.confirmModifyButton.Size = new System.Drawing.Size(75, 23);
-            this.confirmModifyButton.TabIndex = 22;
-            this.confirmModifyButton.Text = "Confirm";
-            this.confirmModifyButton.UseVisualStyleBackColor = true;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(649, 94);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(40, 15);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "Image";
             // 
             // Form1
             // 
@@ -418,6 +451,7 @@
             this.modifyTab.PerformLayout();
             this.radioGroupBox.ResumeLayout(false);
             this.radioGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modifyPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -458,6 +492,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox dimensionsModifyTextBox;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button imageModifyButton;
+        private System.Windows.Forms.PictureBox modifyPictureBox;
     }
 }
 
