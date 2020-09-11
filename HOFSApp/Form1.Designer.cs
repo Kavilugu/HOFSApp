@@ -55,6 +55,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.IDModifyTextBox = new System.Windows.Forms.TextBox();
             this.estatePriceTextBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dimensionsModifyTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.estateRentModifyTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.legalFormModifyTextBox = new System.Windows.Forms.TextBox();
+            this.confirmModifyButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.searchTab.SuspendLayout();
             this.modifyTab.SuspendLayout();
@@ -180,6 +187,13 @@
             // modifyTab
             // 
             this.modifyTab.BackColor = System.Drawing.Color.Silver;
+            this.modifyTab.Controls.Add(this.confirmModifyButton);
+            this.modifyTab.Controls.Add(this.legalFormModifyTextBox);
+            this.modifyTab.Controls.Add(this.label10);
+            this.modifyTab.Controls.Add(this.estateRentModifyTextBox);
+            this.modifyTab.Controls.Add(this.label9);
+            this.modifyTab.Controls.Add(this.dimensionsModifyTextBox);
+            this.modifyTab.Controls.Add(this.label8);
             this.modifyTab.Controls.Add(this.estatePriceTextBox);
             this.modifyTab.Controls.Add(this.label7);
             this.modifyTab.Controls.Add(this.zipCodeModifyTextBox);
@@ -205,9 +219,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(67, 197);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 15);
+            this.label7.Size = new System.Drawing.Size(70, 15);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Estate Price";
+            this.label7.Text = "Estate Price:";
             // 
             // zipCodeModifyTextBox
             // 
@@ -221,9 +235,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(467, 126);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 15);
+            this.label6.Size = new System.Drawing.Size(58, 15);
             this.label6.TabIndex = 12;
-            this.label6.Text = "Zip Code";
+            this.label6.Text = "Zip Code:";
             // 
             // streetModifyTextBox
             // 
@@ -237,9 +251,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(340, 126);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 15);
+            this.label5.Size = new System.Drawing.Size(40, 15);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Street";
+            this.label5.Text = "Street:";
             // 
             // radioGroupBox
             // 
@@ -332,6 +346,63 @@
             this.estatePriceTextBox.Size = new System.Drawing.Size(100, 23);
             this.estatePriceTextBox.TabIndex = 15;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(187, 197);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(106, 15);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Estate Dimensions:";
+            // 
+            // dimensionsModifyTextBox
+            // 
+            this.dimensionsModifyTextBox.Location = new System.Drawing.Point(187, 215);
+            this.dimensionsModifyTextBox.Name = "dimensionsModifyTextBox";
+            this.dimensionsModifyTextBox.Size = new System.Drawing.Size(100, 23);
+            this.dimensionsModifyTextBox.TabIndex = 17;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(328, 197);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(68, 15);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Estate Rent:";
+            // 
+            // estateRentModifyTextBox
+            // 
+            this.estateRentModifyTextBox.Location = new System.Drawing.Point(312, 215);
+            this.estateRentModifyTextBox.Name = "estateRentModifyTextBox";
+            this.estateRentModifyTextBox.Size = new System.Drawing.Size(100, 23);
+            this.estateRentModifyTextBox.TabIndex = 19;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(456, 197);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(69, 15);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Legal Form:";
+            // 
+            // legalFormModifyTextBox
+            // 
+            this.legalFormModifyTextBox.Location = new System.Drawing.Point(442, 215);
+            this.legalFormModifyTextBox.Name = "legalFormModifyTextBox";
+            this.legalFormModifyTextBox.Size = new System.Drawing.Size(100, 23);
+            this.legalFormModifyTextBox.TabIndex = 21;
+            // 
+            // confirmModifyButton
+            // 
+            this.confirmModifyButton.Location = new System.Drawing.Point(262, 260);
+            this.confirmModifyButton.Name = "confirmModifyButton";
+            this.confirmModifyButton.Size = new System.Drawing.Size(75, 23);
+            this.confirmModifyButton.TabIndex = 22;
+            this.confirmModifyButton.Text = "Confirm";
+            this.confirmModifyButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -380,6 +451,13 @@
         private System.Windows.Forms.TextBox zipCodeModifyTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox estatePriceTextBox;
+        private System.Windows.Forms.Button confirmModifyButton;
+        private System.Windows.Forms.TextBox legalFormModifyTextBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox estateRentModifyTextBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox dimensionsModifyTextBox;
+        private System.Windows.Forms.Label label8;
     }
 }
 
