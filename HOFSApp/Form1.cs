@@ -21,19 +21,23 @@ namespace HOFSApp
             for (int i = 0; i < countries.Length; i++)
             {
                 countryComboBox.Items.Add(countries.GetValue(i));
-            }
-            for (int i = 0; i < countries.Length; i++)
-            {
-                modifyCountryComboBox.Items.Add(countries.GetValue(i));
+                if ((Countries)countries.GetValue(i) != Countries.All)
+                {
+                    modifyCountryComboBox.Items.Add(countries.GetValue(i));
+                }
             }
 
             var estateTypes = Enum.GetValues(typeof(EstateType));
             for (int i = 0; i < estateTypes.Length; i++)
             {
                 estateTypeComboBox.Items.Add(estateTypes.GetValue(i));
+                
             }
             countryComboBox.SelectedItem = Countries.All;
             estateTypeComboBox.SelectedItem = EstateType.All;
+            addRadioButton.CheckedChanged += new EventHandler(radioButton_CheckedChanged);
+  
+
         }
 
     private void searchButton_Click(object sender, EventArgs e)
@@ -58,6 +62,17 @@ namespace HOFSApp
                 Estate tempEstate = (Estate)searchListBox.SelectedItem;
                 refreshListBox(controller.DeleteEstate(tempEstate.estateID));
             }
+        }
+
+        private void confirmModifyButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton_CheckedChanged(Object sender, EventArgs e)
+        {
+            IDModifyTextBox.Enabled = modifyRadioButton.Checked;
+            estateTypeComboBox.Enabled = addRadioButton.Checked;
         }
     }
 }

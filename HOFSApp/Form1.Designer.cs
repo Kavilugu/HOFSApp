@@ -40,6 +40,9 @@
             this.countryComboBox = new System.Windows.Forms.ComboBox();
             this.searchListBox = new System.Windows.Forms.ListBox();
             this.modifyTab = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.imageModifyButton = new System.Windows.Forms.Button();
+            this.modifyPictureBox = new System.Windows.Forms.PictureBox();
             this.confirmModifyButton = new System.Windows.Forms.Button();
             this.legalFormModifyTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -54,7 +57,7 @@
             this.streetModifyTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.radioGroupBox = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.addRadioButton = new System.Windows.Forms.RadioButton();
             this.modifyRadioButton = new System.Windows.Forms.RadioButton();
             this.cityModifyTextBox = new System.Windows.Forms.TextBox();
             this.modifyCountryComboBox = new System.Windows.Forms.ComboBox();
@@ -62,14 +65,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.IDModifyTextBox = new System.Windows.Forms.TextBox();
-            this.modifyPictureBox = new System.Windows.Forms.PictureBox();
-            this.imageModifyButton = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
+            this.estateTypeModifyComboBox = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.searchTab.SuspendLayout();
             this.modifyTab.SuspendLayout();
-            this.radioGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.modifyPictureBox)).BeginInit();
+            this.radioGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -191,6 +193,8 @@
             // modifyTab
             // 
             this.modifyTab.BackColor = System.Drawing.Color.Silver;
+            this.modifyTab.Controls.Add(this.label12);
+            this.modifyTab.Controls.Add(this.estateTypeModifyComboBox);
             this.modifyTab.Controls.Add(this.label11);
             this.modifyTab.Controls.Add(this.imageModifyButton);
             this.modifyTab.Controls.Add(this.modifyPictureBox);
@@ -221,6 +225,32 @@
             this.modifyTab.TabIndex = 1;
             this.modifyTab.Text = "Modify";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(649, 94);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(40, 15);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "Image";
+            // 
+            // imageModifyButton
+            // 
+            this.imageModifyButton.Location = new System.Drawing.Point(631, 260);
+            this.imageModifyButton.Name = "imageModifyButton";
+            this.imageModifyButton.Size = new System.Drawing.Size(75, 23);
+            this.imageModifyButton.TabIndex = 24;
+            this.imageModifyButton.Text = "Upload";
+            this.imageModifyButton.UseVisualStyleBackColor = true;
+            // 
+            // modifyPictureBox
+            // 
+            this.modifyPictureBox.Location = new System.Drawing.Point(598, 126);
+            this.modifyPictureBox.Name = "modifyPictureBox";
+            this.modifyPictureBox.Size = new System.Drawing.Size(141, 112);
+            this.modifyPictureBox.TabIndex = 23;
+            this.modifyPictureBox.TabStop = false;
+            // 
             // confirmModifyButton
             // 
             this.confirmModifyButton.Location = new System.Drawing.Point(262, 260);
@@ -229,6 +259,7 @@
             this.confirmModifyButton.TabIndex = 22;
             this.confirmModifyButton.Text = "Confirm";
             this.confirmModifyButton.UseVisualStyleBackColor = true;
+            this.confirmModifyButton.Click += new System.EventHandler(this.confirmModifyButton_Click);
             // 
             // legalFormModifyTextBox
             // 
@@ -328,24 +359,24 @@
             // 
             // radioGroupBox
             // 
-            this.radioGroupBox.Controls.Add(this.radioButton1);
+            this.radioGroupBox.Controls.Add(this.addRadioButton);
             this.radioGroupBox.Controls.Add(this.modifyRadioButton);
             this.radioGroupBox.Location = new System.Drawing.Point(145, 8);
             this.radioGroupBox.Name = "radioGroupBox";
-            this.radioGroupBox.Size = new System.Drawing.Size(139, 60);
+            this.radioGroupBox.Size = new System.Drawing.Size(74, 101);
             this.radioGroupBox.TabIndex = 9;
             this.radioGroupBox.TabStop = false;
             // 
-            // radioButton1
+            // addRadioButton
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(75, 22);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(47, 19);
-            this.radioButton1.TabIndex = 8;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Add";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.addRadioButton.AutoSize = true;
+            this.addRadioButton.Location = new System.Drawing.Point(6, 79);
+            this.addRadioButton.Name = "addRadioButton";
+            this.addRadioButton.Size = new System.Drawing.Size(47, 19);
+            this.addRadioButton.TabIndex = 8;
+            this.addRadioButton.TabStop = true;
+            this.addRadioButton.Text = "Add";
+            this.addRadioButton.UseVisualStyleBackColor = true;
             // 
             // modifyRadioButton
             // 
@@ -410,31 +441,22 @@
             this.IDModifyTextBox.Size = new System.Drawing.Size(100, 23);
             this.IDModifyTextBox.TabIndex = 0;
             // 
-            // modifyPictureBox
+            // estateTypeModifyComboBox
             // 
-            this.modifyPictureBox.Location = new System.Drawing.Point(598, 126);
-            this.modifyPictureBox.Name = "modifyPictureBox";
-            this.modifyPictureBox.Size = new System.Drawing.Size(141, 112);
-            this.modifyPictureBox.TabIndex = 23;
-            this.modifyPictureBox.TabStop = false;
+            this.estateTypeModifyComboBox.FormattingEnabled = true;
+            this.estateTypeModifyComboBox.Location = new System.Drawing.Point(37, 86);
+            this.estateTypeModifyComboBox.Name = "estateTypeModifyComboBox";
+            this.estateTypeModifyComboBox.Size = new System.Drawing.Size(100, 23);
+            this.estateTypeModifyComboBox.TabIndex = 26;
             // 
-            // imageModifyButton
+            // label12
             // 
-            this.imageModifyButton.Location = new System.Drawing.Point(631, 260);
-            this.imageModifyButton.Name = "imageModifyButton";
-            this.imageModifyButton.Size = new System.Drawing.Size(75, 23);
-            this.imageModifyButton.TabIndex = 24;
-            this.imageModifyButton.Text = "Upload";
-            this.imageModifyButton.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(649, 94);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 15);
-            this.label11.TabIndex = 25;
-            this.label11.Text = "Image";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(51, 68);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(71, 15);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Type to add:";
             // 
             // Form1
             // 
@@ -449,9 +471,9 @@
             this.searchTab.PerformLayout();
             this.modifyTab.ResumeLayout(false);
             this.modifyTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modifyPictureBox)).EndInit();
             this.radioGroupBox.ResumeLayout(false);
             this.radioGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.modifyPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -476,7 +498,7 @@
         private System.Windows.Forms.ComboBox modifyCountryComboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox radioGroupBox;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton addRadioButton;
         private System.Windows.Forms.RadioButton modifyRadioButton;
         private System.Windows.Forms.TextBox cityModifyTextBox;
         private System.Windows.Forms.Label label6;
@@ -495,6 +517,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button imageModifyButton;
         private System.Windows.Forms.PictureBox modifyPictureBox;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox estateTypeModifyComboBox;
     }
 }
 
