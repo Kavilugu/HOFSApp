@@ -53,6 +53,7 @@ namespace HOFSApp
             estateTypeComboBox.SelectedIndex = 0;
             modifyLegalFormComboBox.SelectedIndex = 0;
             addRadioButton.Checked = true;
+            estateTypeModifyComboBox.SelectedIndex = 0;
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -81,15 +82,46 @@ namespace HOFSApp
 
         private void confirmModifyButton_Click(object sender, EventArgs e)
         {
-           // cityModifyTextBox.
-            //if()
+            if (addRadioButton.Checked)
+            {
+                Address address = new Address((Countries)modifyCountryComboBox.SelectedItem, cityModifyTextBox.Text, streetModifyTextBox.Text, zipCodeModifyTextBox.Text);
+                if (controller.AddEstate(address, (EstateCategory)estateCategoryModifyComboBox.SelectedItem, (EstateType)estateTypeModifyComboBox.SelectedItem, (EstateLegalForm)modifyLegalFormComboBox.SelectedItem, estatePriceTextBox.Text, dimensionsModifyTextBox.Text, estateRentModifyTextBox.Text))
+                {
+                    MessageBox.Show("Estate Succesfully Added!");
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Input \nTry Again!");
+                }
+            }
+            else
+            {
+                if (controller.ModifyEstate(IDModifyTextBox.Text, (Countries)modifyCountryComboBox.SelectedItem, cityModifyTextBox.Text, streetModifyTextBox.Text, zipCodeModifyTextBox.Text, (EstateType)estateTypeModifyComboBox.SelectedItem, (EstateLegalForm)modifyLegalFormComboBox.SelectedItem, estatePriceTextBox.Text, dimensionsModifyTextBox.Text, estateRentModifyTextBox.Text))
+                {
+                    MessageBox.Show("Estate Successfully modified!");
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Input \nTry Again!");
+                }
 
+            }
         }
 
         private void radioButton_CheckedChanged(Object sender, EventArgs e)
         {
             IDModifyTextBox.Enabled = modifyRadioButton.Checked;
             estateCategoryModifyComboBox.Enabled = addRadioButton.Checked;
+        }
+
+        private void imageModifyButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IDModifyTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

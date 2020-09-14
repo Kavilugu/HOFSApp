@@ -40,6 +40,7 @@
             this.countryComboBox = new System.Windows.Forms.ComboBox();
             this.searchListBox = new System.Windows.Forms.ListBox();
             this.modifyTab = new System.Windows.Forms.TabPage();
+            this.modifyLegalFormComboBox = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.estateTypeModifyComboBox = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.IDModifyTextBox = new System.Windows.Forms.TextBox();
-            this.modifyLegalFormComboBox = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.searchTab.SuspendLayout();
             this.modifyTab.SuspendLayout();
@@ -229,6 +229,18 @@
             this.modifyTab.TabIndex = 1;
             this.modifyTab.Text = "Modify";
             // 
+            // modifyLegalFormComboBox
+            // 
+            this.modifyLegalFormComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.modifyLegalFormComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.modifyLegalFormComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.modifyLegalFormComboBox.FormattingEnabled = true;
+            this.modifyLegalFormComboBox.Location = new System.Drawing.Point(39, 274);
+            this.modifyLegalFormComboBox.Name = "modifyLegalFormComboBox";
+            this.modifyLegalFormComboBox.Size = new System.Drawing.Size(121, 23);
+            this.modifyLegalFormComboBox.Sorted = true;
+            this.modifyLegalFormComboBox.TabIndex = 30;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -288,6 +300,7 @@
             this.imageModifyButton.TabIndex = 24;
             this.imageModifyButton.Text = "Upload";
             this.imageModifyButton.UseVisualStyleBackColor = true;
+            this.imageModifyButton.Click += new System.EventHandler(this.imageModifyButton_Click);
             // 
             // modifyPictureBox
             // 
@@ -480,18 +493,7 @@
             this.IDModifyTextBox.Name = "IDModifyTextBox";
             this.IDModifyTextBox.Size = new System.Drawing.Size(100, 23);
             this.IDModifyTextBox.TabIndex = 0;
-            // 
-            // modifyLegalFormComboBox
-            // 
-            this.modifyLegalFormComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.modifyLegalFormComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.modifyLegalFormComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.modifyLegalFormComboBox.FormattingEnabled = true;
-            this.modifyLegalFormComboBox.Location = new System.Drawing.Point(39, 274);
-            this.modifyLegalFormComboBox.Name = "modifyLegalFormComboBox";
-            this.modifyLegalFormComboBox.Size = new System.Drawing.Size(121, 23);
-            this.modifyLegalFormComboBox.Sorted = true;
-            this.modifyLegalFormComboBox.TabIndex = 30;
+            this.IDModifyTextBox.TextChanged += new System.EventHandler(this.IDModifyTextBox_TextChanged);
             // 
             // Form1
             // 

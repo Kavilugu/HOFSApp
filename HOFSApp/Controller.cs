@@ -1,26 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace HOFSApp
 {
     class Controller
     {
+        private int estateID;
         private List<Estate> estateList;
 
         public Controller()
         {
-
+            estateID = 0;
             estateList = new List<Estate>();
-            Address address = new Address(Countries.Afghanistan, "Lund", "gatan 1", "21422");
-            Address address2 = new Address(Countries.Sverige, "Stockholm", "gatan 2", "21422");
-            Estate resE = new ResidentialEstate(1, address, EstateType.Apartment, EstateLegalForm.Ownership, 1000, 10, 100);
-            Estate comE = new CommercialEstate(2, address2, EstateType.Factory, EstateLegalForm.Ownership, 100000, 250, 5000);
-            estateList = new List<Estate>()
-            {
-                resE,
-                comE
-            };
 
         }
         public List<Estate> SearchEstate(Countries country, string city, EstateType estateType)
@@ -84,17 +77,71 @@ namespace HOFSApp
             return CopyList(estateList);
         }
 
-        public bool AddResidentialEstate(Address address, EstateType estateType, EstateLegalForm estateLegalForm, int estatePrice, double estateDimensions, int estateRent)
+        public bool AddEstate(Address address, EstateCategory estateCategory, EstateType estateType, EstateLegalForm estateLegalForm, string estatePrice, string estateDimensions, string estateRent)
         {
             Estate estate;
-           
+            if (String.IsNullOrEmpty(address.city) || String.IsNullOrEmpty(address.street) || String.IsNullOrEmpty(address.zipCode))
+            {
                 return false;
-        }
+            }
 
-        public bool AddCommercialEstate(Address address, EstateType estateType, EstateLegalForm estateLegalForm, int estatePrice, double estateDimensions, int estateRent)
-        {
+            if (int.TryParse(estatePrice, out int estatePriceResult) &&
+                double.TryParse(estateDimensions, out double estateDimensionsResult) &&
+                int.TryParse(estateRent, out int estateRentResult))
+            {
+                if (estateCategory == EstateCategory.Commercial)
+                {
+                    estate = new CommercialEstate(generateEstateID(), address, estateType, estateLegalForm, estatePriceResult, estateDimensionsResult, estateRentResult);
+                    estateList.Add(estate);
+                    return true;
+                }
+                else if (estateCategory == EstateCategory.Residential)
+                {
+                    estate = new ResidentialEstate(generateEstateID(), address, estateType, estateLegalForm, estatePriceResult, estateDimensionsResult, estateRentResult);
+                    estateList.Add(estate);
+                    return true;
+                }
+            }
 
             return false;
+        }
+
+        public bool ModifyEstate(string estateID, Countries country, string city, string street, string zipCode, EstateType estateType, EstateLegalForm estateLegalForm, string estatePrice, string estateDimensions, string estateRent)
+        {
+            Estate estate = null;
+            int ID;
+            bool IDExists = ValidateID(estateID, out ID);
+            if (!IDExists)
+            {
+                return false;
+            }
+            
+            foreach (Estate compareEstate in estateList)
+            {
+                if (compareEstate.estateID == ID)
+                {
+                    estate = compareEstate;
+                }
+            }
+
+            estate.address.country = country;
+            estate.estateType = estateType;
+            estate.estateLegalForm = estateLegalForm;
+
+            try
+            {
+                if (!String.IsNullOrEmpty(city)) { estate.address.city = city; }
+                if (!String.IsNullOrEmpty(street)) { estate.address.street = street; }
+                if (!String.IsNullOrEmpty(zipCode)) { estate.address.zipCode = zipCode; }
+                if (!String.IsNullOrEmpty(estateDimensions)) { estate.estateDimensions = double.Parse(estateDimensions); }
+                if (!String.IsNullOrEmpty(estateRent)) { estate.estateRent = int.Parse(estateRent); }
+                if (!String.IsNullOrEmpty(estatePrice)) { estate.estatePrice = int.Parse(estatePrice); }
+            } catch (Exception e)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private List<Estate> CopyList(List<Estate> target)
@@ -106,6 +153,34 @@ namespace HOFSApp
                 tempList.Add(target[i]);
             }
             return tempList;
+        }
+        private int generateEstateID()
+        {
+            return ++estateID;
+        }
+
+        private bool ValidateID(string estateID, out int result)
+        {
+
+            bool IDExists = false;
+
+            if (!int.TryParse(estateID, out result))
+            {
+                return false;
+            }
+
+            foreach (Estate estate in estateList)
+            {
+                if (result == estate.estateID)
+                {
+                    IDExists = true;
+                }
+            }
+            if (!IDExists)
+            {
+                return false;
+            }
+            return IDExists;
         }
     }
 }
