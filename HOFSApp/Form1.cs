@@ -10,9 +10,12 @@ using System.Windows.Forms;
 
 namespace HOFSApp
 {
+    //Makes up the GUI and the logic behind it's components
     public partial class Form1 : Form
     {
         private Controller controller;
+
+        //Construucotr, fills all the comboboxes with Enums, assigns them a default value and adds eventlisteners.
         public Form1()
         {
             InitializeComponent();
@@ -54,19 +57,23 @@ namespace HOFSApp
             modifyLegalFormComboBox.SelectedIndex = 0;
             addRadioButton.Checked = true;
             estateTypeModifyComboBox.SelectedIndex = 0;
+            searchListBox.MouseDoubleClick += new MouseEventHandler(searchListbox_MouseDoubleClick);
         }
 
+        //Listens to clicks on the search button
         private void searchButton_Click(object sender, EventArgs e)
         {
             refreshListBox(controller.SearchEstate((Countries)countryComboBox.SelectedItem, cityTextBox.Text, (EstateType)estateTypeComboBox.SelectedItem));
         }
 
+        //Refreshes the datasource assigned to the listbox
         private void refreshListBox(List<Estate> estateList)
         {
             searchListBox.DataSource = estateList;
             searchListBox.DisplayMember = "GetSummary";
         }
 
+        //Listens to clicks on the delete button
         private void deleteButton_Click(object sender, EventArgs e)
         {
             if (searchListBox.SelectedIndex <= -1)
@@ -80,12 +87,13 @@ namespace HOFSApp
             }
         }
 
+        //Checks which radio button is assigned and then calls methods in controller based on if it's add or modify
         private void confirmModifyButton_Click(object sender, EventArgs e)
         {
             if (addRadioButton.Checked)
             {
                 Address address = new Address((Countries)modifyCountryComboBox.SelectedItem, cityModifyTextBox.Text, streetModifyTextBox.Text, zipCodeModifyTextBox.Text);
-                if (controller.AddEstate(address, (EstateCategory)estateCategoryModifyComboBox.SelectedItem, (EstateType)estateTypeModifyComboBox.SelectedItem, (EstateLegalForm)modifyLegalFormComboBox.SelectedItem, estatePriceTextBox.Text, dimensionsModifyTextBox.Text, estateRentModifyTextBox.Text))
+                if (controller.AddEstate(address, (EstateCategory)estateCategoryModifyComboBox.SelectedItem, (EstateType)estateTypeModifyComboBox.SelectedItem, (EstateLegalForm)modifyLegalFormComboBox.SelectedItem, estatePriceTextBox.Text, dimensionsModifyTextBox.Text, estateRentModifyTextBox.Text, imageLabel.Text))
                 {
                     MessageBox.Show("Estate Succesfully Added!");
                 }
@@ -96,7 +104,7 @@ namespace HOFSApp
             }
             else
             {
-                if (controller.ModifyEstate(IDModifyTextBox.Text, (Countries)modifyCountryComboBox.SelectedItem, cityModifyTextBox.Text, streetModifyTextBox.Text, zipCodeModifyTextBox.Text, (EstateType)estateTypeModifyComboBox.SelectedItem, (EstateLegalForm)modifyLegalFormComboBox.SelectedItem, estatePriceTextBox.Text, dimensionsModifyTextBox.Text, estateRentModifyTextBox.Text))
+                if (controller.ModifyEstate(IDModifyTextBox.Text, (Countries)modifyCountryComboBox.SelectedItem, cityModifyTextBox.Text, streetModifyTextBox.Text, zipCodeModifyTextBox.Text, (EstateType)estateTypeModifyComboBox.SelectedItem, (EstateLegalForm)modifyLegalFormComboBox.SelectedItem, estatePriceTextBox.Text, dimensionsModifyTextBox.Text, estateRentModifyTextBox.Text, imageLabel.Text))
                 {
                     MessageBox.Show("Estate Successfully modified!");
                 }
@@ -108,19 +116,37 @@ namespace HOFSApp
             }
         }
 
+        //eventlistener for radiobuttons
         private void radioButton_CheckedChanged(Object sender, EventArgs e)
         {
             IDModifyTextBox.Enabled = modifyRadioButton.Checked;
             estateCategoryModifyComboBox.Enabled = addRadioButton.Checked;
         }
 
+        /**Passes on a picture box for insertion of a picture to the 
+        controller and sets a label to the filepath so it can be retreived
+        */
         private void imageModifyButton_Click(object sender, EventArgs e)
         {
-
+            imageLabel.Text = controller.HandleImage(modifyPictureBox);
+            modifyPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
-        private void IDModifyTextBox_TextChanged(object sender, EventArgs e)
+        private void searchListbox_MouseDoubleClick(Object sender, MouseEventArgs e)
         {
+            int index = this.searchListBox.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                Estate estate = (Estate)searchListBox.SelectedItem;
+                EstateInfo estateForm = new EstateInfo();
+                estateForm.FullInfoLabel.Text = estate.GetFullInfo;
+                if (!string.IsNullOrEmpty(estate.EstatePicture))
+                {
+                    estateForm.FullInfoPictureBox.Image = new Bitmap(estate.EstatePicture);
+                    estateForm.FullInfoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                estateForm.Show();
+            }
 
         }
     }

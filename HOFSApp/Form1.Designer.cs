@@ -40,6 +40,7 @@
             this.countryComboBox = new System.Windows.Forms.ComboBox();
             this.searchListBox = new System.Windows.Forms.ListBox();
             this.modifyTab = new System.Windows.Forms.TabPage();
+            this.imageLabel = new System.Windows.Forms.Label();
             this.modifyLegalFormComboBox = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.estateTypeModifyComboBox = new System.Windows.Forms.ComboBox();
@@ -195,6 +196,7 @@
             // modifyTab
             // 
             this.modifyTab.BackColor = System.Drawing.Color.Silver;
+            this.modifyTab.Controls.Add(this.imageLabel);
             this.modifyTab.Controls.Add(this.modifyLegalFormComboBox);
             this.modifyTab.Controls.Add(this.label13);
             this.modifyTab.Controls.Add(this.estateTypeModifyComboBox);
@@ -228,6 +230,14 @@
             this.modifyTab.Size = new System.Drawing.Size(801, 429);
             this.modifyTab.TabIndex = 1;
             this.modifyTab.Text = "Modify";
+            // 
+            // imageLabel
+            // 
+            this.imageLabel.AutoSize = true;
+            this.imageLabel.Location = new System.Drawing.Point(575, 242);
+            this.imageLabel.Name = "imageLabel";
+            this.imageLabel.Size = new System.Drawing.Size(0, 15);
+            this.imageLabel.TabIndex = 31;
             // 
             // modifyLegalFormComboBox
             // 
@@ -493,7 +503,6 @@
             this.IDModifyTextBox.Name = "IDModifyTextBox";
             this.IDModifyTextBox.Size = new System.Drawing.Size(100, 23);
             this.IDModifyTextBox.TabIndex = 0;
-            this.IDModifyTextBox.TextChanged += new System.EventHandler(this.IDModifyTextBox_TextChanged);
             // 
             // Form1
             // 
@@ -558,6 +567,7 @@
         private System.Windows.Forms.ComboBox estateTypeModifyComboBox;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox modifyLegalFormComboBox;
+        private System.Windows.Forms.Label imageLabel;
     }
 }
 

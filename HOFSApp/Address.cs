@@ -4,6 +4,7 @@ using System.Text;
 
 namespace HOFSApp
 {
+    //Data container used by Estate
     class Address
     {
         public Address(Countries country, string city, string street, string zipCode)

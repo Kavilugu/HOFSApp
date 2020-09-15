@@ -4,6 +4,7 @@ using System.Text;
 
 namespace HOFSApp
 {
+    // Abstract class defining Estates
     abstract class Estate : IEstate
     {
         public Estate(int estateID, Address address, EstateType estateType, EstateLegalForm estateLegalForm)
@@ -25,6 +26,7 @@ namespace HOFSApp
         public abstract EstateLegalForm estateLegalForm { get; set; }
         public abstract string GetSummary { get; }
         public abstract string GetFullInfo { get; }
+        public abstract string EstatePicture { get; set; }
 
 
 
