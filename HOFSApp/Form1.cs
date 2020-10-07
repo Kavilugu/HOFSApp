@@ -38,11 +38,7 @@ namespace HOFSApp
                     estateTypeModifyComboBox.Items.Add(estateTypes.GetValue(i));
                 }
             }
-            var estateCategories = Enum.GetValues(typeof(EstateCategory));
-            for (int i = 0; i < estateCategories.Length; i++)
-            {
-                estateCategoryModifyComboBox.Items.Add(estateCategories.GetValue(i));
-            }
+
             var estateLegalForm = Enum.GetValues(typeof(EstateLegalForm));
             for (int i = 0; i < estateLegalForm.Length; i++)
             {
@@ -52,12 +48,16 @@ namespace HOFSApp
             estateTypeComboBox.SelectedItem = EstateType.All;
             addRadioButton.CheckedChanged += new EventHandler(radioButton_CheckedChanged);
             modifyCountryComboBox.SelectedIndex = 0;
-            estateCategoryModifyComboBox.SelectedIndex = 0;
-            estateTypeComboBox.SelectedIndex = 0;
             modifyLegalFormComboBox.SelectedIndex = 0;
             addRadioButton.Checked = true;
             estateTypeModifyComboBox.SelectedIndex = 0;
             searchListBox.MouseDoubleClick += new MouseEventHandler(searchListbox_MouseDoubleClick);
+            menuItemNew.Click += new EventHandler(menuItemNew_ItemClicked);
+            menuItemOpen.Click += new EventHandler(menuItemOpen_ItemClicked);
+            menuItemSave.Click += new EventHandler(menuItemSave_ItemClicked);
+            menuItemSaveAs.Click += new EventHandler(menuItemSaveAs_ItemClicked);
+            menuItemExportXML.Click += new EventHandler(menuItemExportXML_ItemClicked);
+            menuItemExit.Click += new EventHandler(menuItemExit_ItemClicked);
         }
 
         //Listens to clicks on the search button
@@ -93,7 +93,7 @@ namespace HOFSApp
             if (addRadioButton.Checked)
             {
                 Address address = new Address((Countries)modifyCountryComboBox.SelectedItem, cityModifyTextBox.Text, streetModifyTextBox.Text, zipCodeModifyTextBox.Text);
-                if (controller.AddEstate(address, (EstateCategory)estateCategoryModifyComboBox.SelectedItem, (EstateType)estateTypeModifyComboBox.SelectedItem, (EstateLegalForm)modifyLegalFormComboBox.SelectedItem, estatePriceTextBox.Text, dimensionsModifyTextBox.Text, estateRentModifyTextBox.Text, imageLabel.Text))
+                if (controller.AddEstate(address, (EstateType)estateTypeModifyComboBox.SelectedItem, (EstateLegalForm)modifyLegalFormComboBox.SelectedItem, estatePriceTextBox.Text, dimensionsModifyTextBox.Text, estateRentModifyTextBox.Text, imageLabel.Text))
                 {
                     MessageBox.Show("Estate Succesfully Added!");
                 }
@@ -104,7 +104,7 @@ namespace HOFSApp
             }
             else
             {
-                if (controller.ModifyEstate(IDModifyTextBox.Text, (Countries)modifyCountryComboBox.SelectedItem, cityModifyTextBox.Text, streetModifyTextBox.Text, zipCodeModifyTextBox.Text, (EstateType)estateTypeModifyComboBox.SelectedItem, (EstateLegalForm)modifyLegalFormComboBox.SelectedItem, estatePriceTextBox.Text, dimensionsModifyTextBox.Text, estateRentModifyTextBox.Text, imageLabel.Text))
+                if (controller.ModifyEstate(IDModifyTextBox.Text, (Countries)modifyCountryComboBox.SelectedItem, cityModifyTextBox.Text, streetModifyTextBox.Text, zipCodeModifyTextBox.Text, (EstateLegalForm)modifyLegalFormComboBox.SelectedItem, estatePriceTextBox.Text, dimensionsModifyTextBox.Text, estateRentModifyTextBox.Text, imageLabel.Text))
                 {
                     MessageBox.Show("Estate Successfully modified!");
                 }
@@ -120,7 +120,7 @@ namespace HOFSApp
         private void radioButton_CheckedChanged(Object sender, EventArgs e)
         {
             IDModifyTextBox.Enabled = modifyRadioButton.Checked;
-            estateCategoryModifyComboBox.Enabled = addRadioButton.Checked;
+            estateTypeModifyComboBox.Enabled = addRadioButton.Checked;
         }
 
         /**Passes on a picture box for insertion of a picture to the 
@@ -139,7 +139,7 @@ namespace HOFSApp
             {
                 Estate estate = (Estate)searchListBox.SelectedItem;
                 EstateInfo estateForm = new EstateInfo();
-                estateForm.FullInfoLabel.Text = estate.GetFullInfo;
+                estateForm.FullInfoLabel.Text = estate.ToString();
                 if (!string.IsNullOrEmpty(estate.EstatePicture))
                 {
                     estateForm.FullInfoPictureBox.Image = new Bitmap(estate.EstatePicture);
@@ -147,7 +147,95 @@ namespace HOFSApp
                 }
                 estateForm.Show();
             }
+        }
 
+        private void menuItemNew_ItemClicked(object sender, EventArgs e)
+        {
+            if (controller.HasChanged())
+            {
+                DialogResult dialogResult = MessageBox.Show("Unsaved changes. \nDo you wish to continue without saving)", "Save Notice", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+                if (dialogResult == DialogResult.Yes)
+                {
+                    refreshListBox(controller.NewFile());
+                    refreshUI();
+                }
+            }
+            refreshListBox(controller.NewFile());
+            refreshUI();
+        }
+        private void menuItemOpen_ItemClicked(object sender, EventArgs e)
+        {
+            if (controller.HasChanged())
+            {
+                DialogResult dialogResult = MessageBox.Show("Unsaved changes. \nDo you wish to continue without saving)", "Save Notice", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+                if (dialogResult == DialogResult.Yes)
+                {
+                    controller.openFile();
+                    refreshUI();
+                }
+            }
+            else
+            {
+                controller.openFile();
+                refreshUI();
+            }
+        }
+        private void menuItemSave_ItemClicked(object sender, EventArgs e)
+        {
+            bool fileExists = controller.Save();
+            if (!fileExists)
+            {
+                controller.SaveAs();
+            }
+
+        }
+        private void menuItemSaveAs_ItemClicked(object sender, EventArgs e)
+        {
+            bool saved = controller.SaveAs();
+            if (!saved)
+            {
+                MessageBox.Show("Save Error");
+            }
+        }
+       
+        private void menuItemExportXML_ItemClicked(object sender, EventArgs e)
+        {
+            bool saved = controller.ExportXML();
+            if (!saved)
+            {
+                MessageBox.Show("Save Error");
+            }
+        }
+        private void menuItemExit_ItemClicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void refreshUI()
+        {
+            cityModifyTextBox.Text = "";
+            dimensionsModifyTextBox.Text = "";
+            estateRentModifyTextBox.Text = "";
+            streetModifyTextBox.Text = "";
+            zipCodeModifyTextBox.Text = "";
+            cityTextBox.Text = "";
+            imageLabel.Text = "";
+            IDModifyTextBox.Text = "";
+            estatePriceTextBox.Text = "";
+            countryComboBox.SelectedItem = Countries.All;
+            estateTypeComboBox.SelectedItem = EstateType.All;
+            modifyCountryComboBox.SelectedIndex = 0;
+            modifyLegalFormComboBox.SelectedIndex = 0;
+            estateTypeModifyComboBox.SelectedIndex = 0;
+            modifyPictureBox.Image = null;
         }
     }
 }

@@ -4,18 +4,22 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace HOFSApp
 {
     //This class handles most of the logic and computing that the GUI uses
     class Controller
     {
         private int estateID;
-        private List<Estate> estateList;
+        private EstateManager em;
+        private bool hasChanged = false;
+        private string filepath = "";
+        private OpenFileDialog ofd = new OpenFileDialog();
 
         public Controller()
         {
             estateID = 0;
-            estateList = new List<Estate>();
+            em = new EstateManager();
 
         }
         //This class checks which fields are specified in the GUI and then bases the serach on that.
@@ -23,44 +27,52 @@ namespace HOFSApp
         {
             List<Estate> matchList = new List<Estate>();
             var formattedCity = city.ToUpper();
+            DictionaryManager<EstateType, Estate> dictionary = new DictionaryManager<EstateType, Estate>();
+            for (int i = 0; i < em.Count; i++)
+            {
+                dictionary.Add(em.GetAt(i).estateType, em.GetAt(i));
+            }
 
             if (country == Countries.All && estateType == EstateType.All)
             {
-                for (int i = 0; i < estateList.Count; i++)
+                for (int i = 0; i < em.Count; i++)
                 {
-                    if (estateList[i].address.city.ToUpper().Contains(formattedCity))
+                    if (em.GetAt(i).address.city.ToUpper().Contains(formattedCity))
                     {
-                        matchList.Add(estateList[i]);
+                        matchList.Add(em.GetAt(i));
                     }
                 }
             }
             else if (country == Countries.All)
             {
-                for (int i = 0; i < estateList.Count; i++)
+
+                List<Estate> estateTypes = new List<Estate>();
+                dictionary.Get(estateType, out estateTypes);
+                for (int i = 0; i < estateTypes.Count; i++)
                 {
-                    if (estateList[i].estateType == estateType && estateList[i].address.city.ToUpper().Contains(formattedCity))
+                    if (estateTypes[i].address.city.ToUpper().Contains(formattedCity))
                     {
-                        matchList.Add(estateList[i]);
+                        matchList.Add(estateTypes[i]);
                     }
                 }
             }
             else if (estateType == EstateType.All)
             {
-                for (int i = 0; i < estateList.Count; i++)
+                for (int i = 0; i < em.Count; i++)
                 {
-                    if (estateList[i].address.country == country && estateList[i].address.city.ToUpper().Contains(formattedCity))
+                    if (em.GetAt(i).address.country == country && em.GetAt(i).address.city.ToUpper().Contains(formattedCity))
                     {
-                        matchList.Add(estateList[i]);
+                        matchList.Add(em.GetAt(i));
                     }
                 }
             }
             else
             {
-                for (int i = 0; i < estateList.Count; i++)
+                for (int i = 0; i < em.Count; i++)
                 {
-                    if (estateList[i].address.country == country && estateList[i].address.city.ToUpper().Contains(formattedCity) && estateList[i].estateType == estateType)
+                    if (em.GetAt(i).address.country == country && em.GetAt(i).address.city.ToUpper().Contains(formattedCity) && em.GetAt(i).estateType == estateType)
                     {
-                        matchList.Add(estateList[i]);
+                        matchList.Add(em.GetAt(i));
                     }
                 }
             }
@@ -71,18 +83,19 @@ namespace HOFSApp
         //Deletes the Estate chosen in the GUI from the list of Estates
         public List<Estate> DeleteEstate(int ID)
         {
-            for (int i = 0; i < estateList.Count; i++)
+            for (int i = 0; i < em.Count; i++)
             {
-                if (estateList[i].estateID == ID)
+                if (em.GetAt(i).estateID == ID)
                 {
-                    estateList.RemoveAt(i);
+                    em.DeleteAt(i);
                 }
             }
-            return CopyList(estateList);
+            SetChanged();
+            return em.getList();
         }
 
         //Makes sure that no info is empty and then creates and adds and Estate to the list.
-        public bool AddEstate(Address address, EstateCategory estateCategory, EstateType estateType, EstateLegalForm estateLegalForm, string estatePrice, string estateDimensions, string estateRent, string imageString)
+        public bool AddEstate(Address address, EstateType estateType, EstateLegalForm estateLegalForm, string estatePrice, string estateDimensions, string estateRent, string imageString)
         {
             Estate estate;
             if (String.IsNullOrEmpty(address.city) || String.IsNullOrEmpty(address.street) || String.IsNullOrEmpty(address.zipCode))
@@ -94,18 +107,60 @@ namespace HOFSApp
                 double.TryParse(estateDimensions, out double estateDimensionsResult) &&
                 int.TryParse(estateRent, out int estateRentResult))
             {
-                if (estateCategory == EstateCategory.Commercial)
+                if (estateType == EstateType.Apartment)
                 {
-                    estate = new CommercialEstate(GenerateEstateID(), address, estateType, estateLegalForm, estatePriceResult, estateDimensionsResult, estateRentResult);
+                    estate = new Apartment(GenerateEstateID(), address, estateLegalForm, estatePriceResult, estateDimensionsResult, estateRentResult);
                     estate.EstatePicture = imageString;
-                    estateList.Add(estate);
+                    em.Add(estate);
+                    SetChanged();
                     return true;
                 }
-                else if (estateCategory == EstateCategory.Residential)
+                else if (estateType == EstateType.House)
                 {
-                    estate = new ResidentialEstate(GenerateEstateID(), address, estateType, estateLegalForm, estatePriceResult, estateDimensionsResult, estateRentResult);
+                    estate = new House(GenerateEstateID(), address, estateLegalForm, estatePriceResult, estateDimensionsResult, estateRentResult);
                     estate.EstatePicture = imageString;
-                    estateList.Add(estate);
+                    em.Add(estate);
+                    SetChanged();
+                    return true;
+                }
+                else if (estateType == EstateType.Villa)
+                {
+                    estate = new Villa(GenerateEstateID(), address, estateLegalForm, estatePriceResult, estateDimensionsResult, estateRentResult);
+                    estate.EstatePicture = imageString;
+                    em.Add(estate);
+                    SetChanged();
+                    return true;
+                }
+                else if (estateType == EstateType.Townhouse)
+                {
+                    estate = new TownHouse(GenerateEstateID(), address, estateLegalForm, estatePriceResult, estateDimensionsResult, estateRentResult);
+                    estate.EstatePicture = imageString;
+                    em.Add(estate);
+                    SetChanged();
+                    return true;
+                }
+                else if (estateType == EstateType.Factory)
+                {
+                    estate = new Factory(GenerateEstateID(), address, estateLegalForm, estatePriceResult, estateDimensionsResult, estateRentResult);
+                    estate.EstatePicture = imageString;
+                    em.Add(estate);
+                    SetChanged();
+                    return true;
+                }
+                else if (estateType == EstateType.Shop)
+                {
+                    estate = new Shop(GenerateEstateID(), address, estateLegalForm, estatePriceResult, estateDimensionsResult, estateRentResult);
+                    estate.EstatePicture = imageString;
+                    em.Add(estate);
+                    SetChanged();
+                    return true;
+                }
+                else if (estateType == EstateType.Warehouse)
+                {
+                    estate = new Warehouse(GenerateEstateID(), address, estateLegalForm, estatePriceResult, estateDimensionsResult, estateRentResult);
+                    estate.EstatePicture = imageString;
+                    em.Add(estate);
+                    SetChanged();
                     return true;
                 }
             }
@@ -113,7 +168,7 @@ namespace HOFSApp
             return false;
         }
         //Modifies the chosen estate after verifying the ID. 
-        public bool ModifyEstate(string estateID, Countries country, string city, string street, string zipCode, EstateType estateType, EstateLegalForm estateLegalForm, string estatePrice, string estateDimensions, string estateRent, string imageString)
+        public bool ModifyEstate(string estateID, Countries country, string city, string street, string zipCode, EstateLegalForm estateLegalForm, string estatePrice, string estateDimensions, string estateRent, string imageString)
         {
             Estate estate = null;
             int ID;
@@ -122,8 +177,8 @@ namespace HOFSApp
             {
                 return false;
             }
-            
-            foreach (Estate compareEstate in estateList)
+
+            foreach (Estate compareEstate in em.getList())
             {
                 if (compareEstate.estateID == ID)
                 {
@@ -132,7 +187,6 @@ namespace HOFSApp
             }
 
             estate.address.country = country;
-            estate.estateType = estateType;
             estate.estateLegalForm = estateLegalForm;
 
             //Checks which fields are entered and only modifies those. Also cathces any parsing errors.
@@ -145,11 +199,12 @@ namespace HOFSApp
                 if (!String.IsNullOrEmpty(estateRent)) { estate.estateRent = int.Parse(estateRent); }
                 if (!String.IsNullOrEmpty(estatePrice)) { estate.estatePrice = int.Parse(estatePrice); }
                 if (!String.IsNullOrEmpty(imageString)) { estate.EstatePicture = imageString; }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return false;
             }
-
+            SetChanged();
             return true;
         }
 
@@ -167,16 +222,78 @@ namespace HOFSApp
             return "";
         }
 
-        //Copies a list of Estates to prevent list errors.
-        private List<Estate> CopyList(List<Estate> target)
+        public void SetChanged()
         {
-            List<Estate> tempList = new List<Estate>();
+            hasChanged = true;
+        }
 
-            for (int i = 0; i < estateList.Count; i++)
+        public bool HasChanged()
+        {
+            return hasChanged;
+        }
+
+        public List<Estate> NewFile()
+        {
+            em = new EstateManager();
+            hasChanged = false;
+            filepath = "";
+            estateID = 0;
+            return em.getList();
+
+        }
+
+        public bool SaveAs()
+        {
+            ofd.Filter = "Files (*.txt; | *.txt;)";
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                tempList.Add(target[i]);
+                filepath = ofd.FileName;
+                bool saved = em.BinarySerialize(filepath);
+                hasChanged = !saved;
+                return hasChanged;
             }
-            return tempList;
+            return false;
+        }
+
+        public bool Save()
+        {
+            if (filepath.Length > 0)
+            {
+                bool saved = em.BinarySerialize(filepath);
+                hasChanged = !saved;
+                return saved;
+
+            }
+            return false;
+
+        }
+
+        public bool openFile()
+        {
+            ofd.Filter = "Files (*.txt | *.txt;)";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                filepath = ofd.FileName;
+                bool opened = em.BinaryDeSerialize(filepath);
+                estateID = em.GetAt(em.Count - 1).estateID;
+                hasChanged = !opened;
+                return opened;
+            }
+            return false;
+        }
+
+        public bool ExportXML()
+        {
+            ofd.Filter = "XML-Files (*.xml; | *.xml;)";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                filepath = ofd.FileName;
+                bool saved = em.XMLSerialize(filepath);
+                hasChanged = !saved;
+                return saved;
+            }
+            return false;
+
         }
 
         private int GenerateEstateID()
@@ -195,7 +312,7 @@ namespace HOFSApp
                 return false;
             }
 
-            foreach (Estate estate in estateList)
+            foreach (Estate estate in em.getList())
             {
                 if (result == estate.estateID)
                 {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HOFSApp
 {
-    interface IEstate
+    public interface IEstate
     {
         public int estateID { get; set; }
         public Address address { get; set; }

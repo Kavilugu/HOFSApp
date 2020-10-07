@@ -4,7 +4,8 @@ using System.Text;
 
 namespace HOFSApp
 {
-    enum EstateLegalForm
+
+    public enum EstateLegalForm
     {
         Ownership,
         Rental,

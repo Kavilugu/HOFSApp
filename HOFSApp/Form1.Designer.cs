@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.searchTab = new System.Windows.Forms.TabPage();
             this.deleteButton = new System.Windows.Forms.Button();
@@ -44,8 +45,6 @@
             this.modifyLegalFormComboBox = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.estateTypeModifyComboBox = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.estateCategoryModifyComboBox = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.imageModifyButton = new System.Windows.Forms.Button();
             this.modifyPictureBox = new System.Windows.Forms.PictureBox();
@@ -70,21 +69,34 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.IDModifyTextBox = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemXML = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemExportXML = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.searchTab.SuspendLayout();
             this.modifyTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.modifyPictureBox)).BeginInit();
             this.radioGroupBox.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.searchTab);
             this.tabControl1.Controls.Add(this.modifyTab);
-            this.tabControl1.Location = new System.Drawing.Point(-2, 0);
+            this.tabControl1.Location = new System.Drawing.Point(0, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(809, 457);
+            this.tabControl1.Size = new System.Drawing.Size(803, 435);
             this.tabControl1.TabIndex = 0;
             // 
             // searchTab
@@ -102,7 +114,7 @@
             this.searchTab.Location = new System.Drawing.Point(4, 24);
             this.searchTab.Name = "searchTab";
             this.searchTab.Padding = new System.Windows.Forms.Padding(3);
-            this.searchTab.Size = new System.Drawing.Size(801, 429);
+            this.searchTab.Size = new System.Drawing.Size(795, 407);
             this.searchTab.TabIndex = 0;
             this.searchTab.Text = "Search";
             // 
@@ -200,8 +212,6 @@
             this.modifyTab.Controls.Add(this.modifyLegalFormComboBox);
             this.modifyTab.Controls.Add(this.label13);
             this.modifyTab.Controls.Add(this.estateTypeModifyComboBox);
-            this.modifyTab.Controls.Add(this.label12);
-            this.modifyTab.Controls.Add(this.estateCategoryModifyComboBox);
             this.modifyTab.Controls.Add(this.label11);
             this.modifyTab.Controls.Add(this.imageModifyButton);
             this.modifyTab.Controls.Add(this.modifyPictureBox);
@@ -227,7 +237,7 @@
             this.modifyTab.Location = new System.Drawing.Point(4, 24);
             this.modifyTab.Name = "modifyTab";
             this.modifyTab.Padding = new System.Windows.Forms.Padding(3);
-            this.modifyTab.Size = new System.Drawing.Size(801, 429);
+            this.modifyTab.Size = new System.Drawing.Size(795, 407);
             this.modifyTab.TabIndex = 1;
             this.modifyTab.Text = "Modify";
             // 
@@ -245,7 +255,7 @@
             this.modifyLegalFormComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.modifyLegalFormComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.modifyLegalFormComboBox.FormattingEnabled = true;
-            this.modifyLegalFormComboBox.Location = new System.Drawing.Point(39, 274);
+            this.modifyLegalFormComboBox.Location = new System.Drawing.Point(39, 215);
             this.modifyLegalFormComboBox.Name = "modifyLegalFormComboBox";
             this.modifyLegalFormComboBox.Size = new System.Drawing.Size(121, 23);
             this.modifyLegalFormComboBox.Sorted = true;
@@ -254,7 +264,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(76, 197);
+            this.label13.Location = new System.Drawing.Point(51, 69);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(65, 15);
             this.label13.TabIndex = 29;
@@ -266,32 +276,11 @@
             this.estateTypeModifyComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.estateTypeModifyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.estateTypeModifyComboBox.FormattingEnabled = true;
-            this.estateTypeModifyComboBox.Location = new System.Drawing.Point(39, 215);
+            this.estateTypeModifyComboBox.Location = new System.Drawing.Point(39, 87);
             this.estateTypeModifyComboBox.Name = "estateTypeModifyComboBox";
-            this.estateTypeModifyComboBox.Size = new System.Drawing.Size(121, 23);
+            this.estateTypeModifyComboBox.Size = new System.Drawing.Size(102, 23);
             this.estateTypeModifyComboBox.Sorted = true;
             this.estateTypeModifyComboBox.TabIndex = 28;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(41, 68);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(95, 15);
-            this.label12.TabIndex = 27;
-            this.label12.Text = "Category to add:";
-            // 
-            // estateCategoryModifyComboBox
-            // 
-            this.estateCategoryModifyComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.estateCategoryModifyComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.estateCategoryModifyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.estateCategoryModifyComboBox.FormattingEnabled = true;
-            this.estateCategoryModifyComboBox.Location = new System.Drawing.Point(37, 86);
-            this.estateCategoryModifyComboBox.Name = "estateCategoryModifyComboBox";
-            this.estateCategoryModifyComboBox.Size = new System.Drawing.Size(100, 23);
-            this.estateCategoryModifyComboBox.Sorted = true;
-            this.estateCategoryModifyComboBox.TabIndex = 26;
             // 
             // label11
             // 
@@ -322,7 +311,7 @@
             // 
             // confirmModifyButton
             // 
-            this.confirmModifyButton.Location = new System.Drawing.Point(328, 391);
+            this.confirmModifyButton.Location = new System.Drawing.Point(328, 364);
             this.confirmModifyButton.Name = "confirmModifyButton";
             this.confirmModifyButton.Size = new System.Drawing.Size(75, 23);
             this.confirmModifyButton.TabIndex = 22;
@@ -333,7 +322,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(67, 260);
+            this.label10.Location = new System.Drawing.Point(70, 197);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 15);
             this.label10.TabIndex = 20;
@@ -504,12 +493,109 @@
             this.IDModifyTextBox.Size = new System.Drawing.Size(100, 23);
             this.IDModifyTextBox.TabIndex = 0;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemFile});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menuItemFile
+            // 
+            this.menuItemFile.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.menuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemNew,
+            this.menuItemOpen,
+            this.toolStripSeparator,
+            this.menuItemSave,
+            this.menuItemSaveAs,
+            this.toolStripSeparator1,
+            this.menuItemXML,
+            this.toolStripSeparator2,
+            this.menuItemExit});
+            this.menuItemFile.Name = "menuItemFile";
+            this.menuItemFile.Size = new System.Drawing.Size(37, 20);
+            this.menuItemFile.Text = "&File";
+            // 
+            // menuItemNew
+            // 
+            this.menuItemNew.Image = ((System.Drawing.Image)(resources.GetObject("menuItemNew.Image")));
+            this.menuItemNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menuItemNew.Name = "menuItemNew";
+            this.menuItemNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.menuItemNew.Size = new System.Drawing.Size(146, 22);
+            this.menuItemNew.Text = "&New";
+            // 
+            // menuItemOpen
+            // 
+            this.menuItemOpen.Image = ((System.Drawing.Image)(resources.GetObject("menuItemOpen.Image")));
+            this.menuItemOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menuItemOpen.Name = "menuItemOpen";
+            this.menuItemOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.menuItemOpen.Size = new System.Drawing.Size(146, 22);
+            this.menuItemOpen.Text = "&Open";
+            // 
+            // toolStripSeparator
+            // 
+            this.toolStripSeparator.Name = "toolStripSeparator";
+            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
+            // 
+            // menuItemSave
+            // 
+            this.menuItemSave.Image = ((System.Drawing.Image)(resources.GetObject("menuItemSave.Image")));
+            this.menuItemSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menuItemSave.Name = "menuItemSave";
+            this.menuItemSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.menuItemSave.Size = new System.Drawing.Size(146, 22);
+            this.menuItemSave.Text = "&Save";
+            // 
+            // menuItemSaveAs
+            // 
+            this.menuItemSaveAs.Name = "menuItemSaveAs";
+            this.menuItemSaveAs.Size = new System.Drawing.Size(146, 22);
+            this.menuItemSaveAs.Text = "Save &As";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            // 
+            // menuItemXML
+            // 
+            this.menuItemXML.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemExportXML});
+            this.menuItemXML.Name = "menuItemXML";
+            this.menuItemXML.Size = new System.Drawing.Size(146, 22);
+            this.menuItemXML.Text = "XML";
+            // 
+            // menuItemExportXML
+            // 
+            this.menuItemExportXML.Name = "menuItemExportXML";
+            this.menuItemExportXML.Size = new System.Drawing.Size(149, 22);
+            this.menuItemExportXML.Text = "Export to XML";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
+            // 
+            // menuItemExit
+            // 
+            this.menuItemExit.Name = "menuItemExit";
+            this.menuItemExit.Size = new System.Drawing.Size(146, 22);
+            this.menuItemExit.Text = "E&xit";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
@@ -520,7 +606,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.modifyPictureBox)).EndInit();
             this.radioGroupBox.ResumeLayout(false);
             this.radioGroupBox.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -562,12 +651,22 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button imageModifyButton;
         private System.Windows.Forms.PictureBox modifyPictureBox;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox estateCategoryModifyComboBox;
         private System.Windows.Forms.ComboBox estateTypeModifyComboBox;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox modifyLegalFormComboBox;
         private System.Windows.Forms.Label imageLabel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem menuItemFile;
+        private System.Windows.Forms.ToolStripMenuItem menuItemNew;
+        private System.Windows.Forms.ToolStripMenuItem menuItemOpen;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSave;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSaveAs;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem menuItemExit;
+        private System.Windows.Forms.ToolStripMenuItem menuItemXML;
+        private System.Windows.Forms.ToolStripMenuItem menuItemExportXML;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

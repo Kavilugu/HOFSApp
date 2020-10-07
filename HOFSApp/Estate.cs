@@ -5,19 +5,18 @@ using System.Text;
 namespace HOFSApp
 {
     // Abstract class defining Estates
-    abstract class Estate : IEstate
+    [Serializable]
+    public abstract class Estate : IEstate
     {
-        public Estate(int estateID, Address address, EstateType estateType, EstateLegalForm estateLegalForm)
+        public Estate(int estateID, Address address, EstateLegalForm estateLegalForm)
         {
-            _estateID = estateID;
-            _address = address;
+            this.estateID = estateID;
+            this.address = address;
             this.estateType = estateType;
             this.estateLegalForm = estateLegalForm;
         }
-        private int _estateID;
-        public int estateID { get => _estateID; set => _estateID = value; }
-        private Address _address;
-        public Address address { get => _address; set => _address = value; }
+        public int estateID { get; set; }
+        public Address address { get; set; }
         public abstract EstateCategory estateCategory { get;}
         public abstract int estatePrice { get; set; }
         public abstract double estateDimensions { get; set; }
@@ -25,11 +24,8 @@ namespace HOFSApp
         public abstract EstateType estateType { get; set; }
         public abstract EstateLegalForm estateLegalForm { get; set; }
         public abstract string GetSummary { get; }
-        public abstract string GetFullInfo { get; }
+        public abstract override string ToString();
         public abstract string EstatePicture { get; set; }
-
-
-
 
     }
 }

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace HOFSApp
 {
-    enum EstateType
+
+    public enum EstateType
     {
         All,
         House,
